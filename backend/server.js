@@ -6,12 +6,10 @@ import connectMongoDB from './db/connect-mongodb.js';
 dotenv.config();
 
 const app = express();
-
-app.get('/', (req, res) => {
-    res.send('Server is ready!');
-});
-
 const PORT = process.env.PORT || 3000;
+
+app.use(express.json()); // to parse req.body
+app.use(express.urlencoded({ extended: true })); // to parse form data(urlencoded)
 
 app.use('/api/auth', authRoutes);
 
