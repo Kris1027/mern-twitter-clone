@@ -6,6 +6,7 @@ import Sidebar from './components/common/sidebar';
 import HomePage from './pages/auth/home/home-page';
 import LoginPage from './pages/auth/login/login-page';
 import SignUpPage from './pages/auth/signup/sign-up-page';
+import NotificationPage from './pages/notification/notification-page';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path='/' element={<HomePage />} />
                 <Route path='/signup' element={<SignUpPage />} />
                 <Route path='/login' element={<LoginPage />} />
+                <Route path='/notifications' element={<NotificationPage />} />
             </Routes>
             <RightPanel />
         </div>
