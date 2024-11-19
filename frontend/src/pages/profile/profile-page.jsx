@@ -9,8 +9,6 @@ import ProfileHeaderSkeleton from '../../components/skeletons/profile-header-ske
 import { formatMemberSinceDate } from '../../utils/date';
 import EditProfileModal from './edit-profile-modal';
 
-import { POSTS } from '../../utils/db/dummy';
-
 import { FaLink } from 'react-icons/fa';
 import { FaArrowLeft } from 'react-icons/fa6';
 import { IoCalendarOutline } from 'react-icons/io5';
@@ -45,6 +43,20 @@ const ProfilePage = () => {
                 return data;
             } catch (error) {
                 throw new Error(error);
+            }
+        },
+    });
+
+    const { data: userPosts } = useQuery({
+        queryKey: ['userPosts'],
+        queryFn: async () => {
+            try {
+                const res = await fetch(`/api/posts/user/${username}`);
+                const data = res.json();
+                if (!res.ok) throw new Error(data.error || 'Something went wrong');
+                return data;
+            } catch (error) {
+                throw new Error(error.message);
             }
         },
     });
@@ -88,7 +100,7 @@ const ProfilePage = () => {
                                 <div className='flex flex-col'>
                                     <p className='font-bold text-lg'>{user?.fullName}</p>
                                     <span className='text-sm text-slate-500'>
-                                        {POSTS?.length} posts
+                                        {userPosts?.length} posts
                                     </span>
                                 </div>
                             </div>
