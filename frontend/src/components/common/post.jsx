@@ -8,17 +8,17 @@ import { Link } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import LoadingSpinner from './loading-spinner';
 import { toast } from 'react-hot-toast';
+import { formatPostDate } from '../../utils/date';
 
 const Post = ({ post }) => {
     const [comment, setComment] = useState('');
     const { data: authUser } = useQuery({ queryKey: ['authUser'] });
     const queryQlient = useQueryClient();
+
     const postOwner = post.user;
     const isLiked = post.likes.includes(authUser._id);
-
     const isMyPost = authUser._id === post.user._id;
-
-    const formattedDate = '1h';
+    const formattedDate = formatPostDate(post.createdAt);
 
     const { mutate: deletePost, isPending: isDeleting } = useMutation({
         mutationFn: async () => {
