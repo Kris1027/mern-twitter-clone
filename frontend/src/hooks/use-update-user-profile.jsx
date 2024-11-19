@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 
 const useUpdateUserProfile = () => {
     const queryClient = useQueryClient();
-    const { mutate: updateProfile, isPending: isUpdatingProfile } = useMutation({
+    const { mutateAsync: updateProfile, isPending: isUpdatingProfile } = useMutation({
         mutationFn: async (formData) => {
             try {
                 const res = await fetch('/api/users/update', {

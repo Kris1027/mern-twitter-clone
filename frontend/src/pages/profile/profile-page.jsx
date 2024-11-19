@@ -158,7 +158,11 @@ const ProfilePage = () => {
                                 {(coverImg || profileImg) && (
                                     <button
                                         className='btn btn-primary rounded-full btn-sm text-white px-4 ml-2'
-                                        onClick={() => updateProfile({ profileImg, coverImg })}
+                                        onClick={async () => {
+                                            await updateProfile({ profileImg, coverImg });
+                                            setCoverImg('');
+                                            setProfileImg('');
+                                        }}
                                     >
                                         {isUpdatingProfile ? (
                                             <>
