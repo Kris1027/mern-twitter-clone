@@ -52,8 +52,22 @@ const Post = ({ post }) => {
                 throw new Error(error.message);
             }
         },
-        onSuccess: () => {
-            queryQlient.invalidateQueries({ queryKey: ['posts'] });
+        onSuccess: (updatedLikes) => {
+            // This is not the best UX because it will refetch all posts
+            // queryQlient.invalidateQueries({ queryKey: ['posts'] });
+
+            // Instead, update the cache directly for that post
+            queryQlient.setQueryData(['posts'], (oldData) => {
+                return oldData.map((p) => {
+                    if (p._id === post._id) {
+                        return { ...p, likes: updatedLikes };
+                    }
+                    return p;
+                });
+            });
+        },
+        onError: (error) => {
+            toast.error(error.message);
         },
     });
 
