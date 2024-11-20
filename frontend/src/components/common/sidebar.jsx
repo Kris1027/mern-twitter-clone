@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
-import XSvg from '../svgs/x';
+import XSvg from '../../components/svgs/x';
 
 import { MdHomeFilled } from 'react-icons/md';
 import { IoNotifications } from 'react-icons/io5';
