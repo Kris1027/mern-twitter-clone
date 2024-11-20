@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
-import XSvg from '../../../components/svgs/X';
+import XSvg from '../../../components/logos/x-logo';
 
 import { MdOutlineMail } from 'react-icons/md';
 import { FaUser } from 'react-icons/fa';
